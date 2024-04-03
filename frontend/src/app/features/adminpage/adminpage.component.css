@@ -1,0 +1,8 @@
+.admin {
+  background-color: #D6EAF8;
+}
+button.logout-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

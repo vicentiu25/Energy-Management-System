@@ -1,0 +1,20 @@
+<div class="tab">
+  <h1 style="text-align: center"> Update user</h1>
+  <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="updateForm" #formDirective="ngForm" (ngSubmit)="onSubmit(formDirective)">
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Address</mat-label>
+      <input matInput formControlName="address">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Max Consumption</mat-label>
+      <input matInput formControlName="maxConsumption">
+    </mat-form-field>
+    <button mat-raised-button type="submit" style="margin-top: 35px;">Submit</button>
+  </form>
+</div>

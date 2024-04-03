@@ -1,0 +1,34 @@
+<h1 style="color:blue;text-align:center">Users</h1>
+
+<div class="tab" >
+  <button mat-raised-button (click)="newUser()" class="button">New User</button>
+  <table class="mat-elevation-z8" style="background-color: white">
+    <thead>
+      <tr>
+        <th scope="col" style="width:5%; text-align: center">User</th>
+        <th scope="col" style="width:10%; text-align: center">Username</th>
+        <th scope="col" style="width:10%; text-align: center">Role</th>
+        <th scope="col" style="width:10%; text-align: center">Update</th>
+        <th scope="col" style="width:10%; text-align: center">Delete</th>
+      </tr>
+    </thead>
+    <tbody class="text-light">
+      <tr *ngFor="let element of dataSource$ | async">
+        <td style="width:5%; text-align: center"> {{element.idUser}} </td>
+        <td style="width:10%; text-align: center"> {{element.username}} </td>
+        <td style="width:10%; text-align: center"> {{element.role}} </td>
+        <td style="width:10%; text-align: center">
+          <button mat-fab color="primary" (click)="editUser(element)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+        <td style="width:10%; text-align: center">
+          <button mat-fab color="primary" (click)="deleteUser(element.idUser)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<button mat-raised-button (click)="logout()" class="logout-button">Logout</button>

@@ -1,0 +1,15 @@
+<div class="chat-container">
+  <div class="chat-messages">
+    <!-- Messages container -->
+    <div *ngFor="let message of messages" class="message">
+      <div class="message-content">{{ message.content }}</div>
+      <div class="message-seen" *ngIf="message.seen">Seen</div>
+    </div>
+    <div class="typing" *ngIf="isTyping">Typing...</div>
+  </div>
+  <div class="chat-input">
+    <!-- Input field and send button -->
+    <input type="text" [(ngModel)]="messageToSend" (ngModelChange)="onMessageChange()" placeholder="Type a message..." />
+    <button class="send-button" (click)="sendMessage()">Send</button>
+  </div>
+</div>

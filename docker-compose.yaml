@@ -1,0 +1,94 @@
+services:
+  user_db:
+    container_name: user_db
+    image: postgres:15
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=UserManagement
+    ports:
+      - '5433:5432'
+  device_db:
+    container_name: device_db
+    image: postgres:15
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=DeviceManagement
+    ports:
+      - '5434:5432'
+  monitoring_db:
+    container_name: monitoring_db
+    image: postgres:15
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=MonitoringCommunication
+    ports:
+      - '5435:5432'
+  user-management:
+    build:
+      context: ./user-managment-energy-system
+      dockerfile: Dockerfile
+    depends_on:
+      - user_db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://user_db:5432/UserManagement
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
+    ports:
+      - '8081:8081'
+  device-management:
+    build:
+      context: ./device-managment-energy-system
+      dockerfile: Dockerfile
+    depends_on:
+      - device_db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://device_db:5432/DeviceManagement
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
+    ports:
+      - '8082:8082'
+  monitoring-communication:
+    build:
+      context: ./monitoring-communication
+      dockerfile: Dockerfile
+    depends_on:
+      - monitoring_db
+      - rabbitmq
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://monitoring_db:5432/MonitoringCommunication
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_USERNAME=guest
+      - SPRING_RABBITMQ_PASSWORD=guest
+    ports:
+      - '8083:8083'
+  chat-microservice:
+    build:
+      context: ./chat-microservice
+      dockerfile: Dockerfile
+    ports:
+      - '8084:8084'
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - './frontend:/usr/src/app'
+    ports:
+      - '4200:80'
+  rabbitmq:
+    image: rabbitmq:3.11.25-management-alpine
+    container_name: rabbitmq
+    ports:
+      - '5673:5672'
+      - '15672:15672'

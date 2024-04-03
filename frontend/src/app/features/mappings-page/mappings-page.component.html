@@ -1,0 +1,32 @@
+<h1 style="color:blue;text-align:center">Mappings</h1>
+
+<div class="tab" >
+  <table class="mat-elevation-z8" style="background-color: white">
+    <thead>
+    <tr>
+      <th scope="col" style="width:5%; text-align: center">Device</th>
+      <th scope="col" style="width:10%; text-align: center">Description</th>
+      <th scope="col" style="width:10%; text-align: center">Address</th>
+      <th scope="col" style="width:10%; text-align: center">Max Consumption</th>
+      <th scope="col" style="width:10%; text-align: center">User</th>
+      <th scope="col" style="width:10%; text-align: center">Map User</th>
+    </tr>
+    </thead>
+    <tbody class="text-light">
+    <tr *ngFor="let element of dataSource$ | async">
+      <td style="width:5%; text-align: center"> {{element.idDevice}} </td>
+      <td style="width:10%; text-align: center"> {{element.description}} </td>
+      <td style="width:10%; text-align: center"> {{element.address}} </td>
+      <td style="width:10%; text-align: center"> {{element.maxConsumption}} </td>
+      <td style="width:10%; text-align: center"> {{element.userId}} </td>
+      <td style="width:10%; text-align: center">
+        <button mat-fab color="primary" (click)="mapDevice(element)">
+          <mat-icon>add</mat-icon>
+        </button>
+      </td>
+
+    </tr>
+    </tbody>
+  </table>
+</div>
+<button mat-raised-button (click)="logout()" class="logout-button">Logout</button>

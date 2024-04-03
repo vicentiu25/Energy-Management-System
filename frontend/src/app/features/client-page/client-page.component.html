@@ -1,0 +1,50 @@
+<h1 style="color:blue;text-align:center">Energy Management System</h1>
+<h2 style="color:blue;text-align:center">Client</h2>
+
+<div fxLayoutAlign="center">
+  <mat-card fxFlex = "10"  class="client" >
+    <button mat-raised-button (click)="chat()" style="margin-bottom: 20px">Chat</button>
+  </mat-card>
+</div>
+<div class="tab">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="Device">
+      <th mat-header-cell *matHeaderCellDef> Device </th>
+      <td mat-cell *matCellDef="let element"> {{element.idDevice}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef> Address </th>
+      <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="maxConsumption">
+      <th mat-header-cell *matHeaderCellDef> Max Consumption </th>
+      <td mat-cell *matCellDef="let element"> {{element.maxConsumption}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="userId">
+      <th mat-header-cell *matHeaderCellDef> User </th>
+      <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <div class="datepicker-container">
+    <mat-form-field class="datepicker-field">
+      <input matInput [matDatepicker]="picker" placeholder="Select a date" [value]="today" (dateChange)="onDateChange($event)">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <app-chart [deviceData]="deviceData"></app-chart>
+</div>
+<button mat-raised-button (click)="logout()" class="logout-button">Logout</button>

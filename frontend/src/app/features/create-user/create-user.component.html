@@ -1,0 +1,26 @@
+<div class="tab">
+  <h1 style="text-align: center"> New user</h1>
+  <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="createForm" #formDirective="ngForm" (ngSubmit)="onSubmit(formDirective)">
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="username">
+      <mat-error *ngIf="createForm.controls['username'].invalid">Username must have min. length 6.</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password">
+      <mat-error *ngIf="createForm.controls['password'].invalid" class="wider-error error-position">Password must contain minimum eight characters, at least one uppercase letter, one lowercase letter and one number</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Role</mat-label>
+      <mat-select formControlName="role">
+        <mat-option value="ADMINISTRATOR">ADMINISTRATOR</mat-option>
+        <mat-option value="CLIENT">CLIENT</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button type="submit" style="margin-top: 35px;">Submit</button>
+  </form>
+</div>

@@ -1,0 +1,18 @@
+mat-form-field {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+mat-card {
+  width: 100%;
+}
+
+mat-toolbar {
+  display: flex;
+  justify-content: center;
+}
+
+.login {
+  background-color: #D6EAF8;
+}

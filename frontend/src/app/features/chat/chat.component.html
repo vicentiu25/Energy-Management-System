@@ -1,0 +1,18 @@
+<div *ngFor="let user of activeUsers" class="admin-chat-container">
+  <h3>User: {{ user.userId }}</h3>
+  <div class="admin-chat-messages">
+    <div *ngFor="let message of user.messages" class="admin-message">
+      <div class="admin-message-content">{{ message.content }}</div>
+      <div class="admin-indicators">
+        <div class="admin-message-seen" *ngIf="message.seen">Seen</div>
+      </div>
+    </div>
+    <div class="admin-indicators" *ngIf="user.isTyping">
+      <div class="admin-typing">Typing...</div>
+    </div>
+  </div>
+  <div class="admin-chat-input">
+    <input type="text" [(ngModel)]="user.messageToSend" (ngModelChange)="onMessageChange(user.userId)" placeholder="Type a message..." />
+    <button class="admin-send-button" (click)="sendMessage(user.userId)">Send</button>
+  </div>
+</div>

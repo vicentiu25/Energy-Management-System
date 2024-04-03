@@ -1,0 +1,20 @@
+<div class="tab">
+  <h1 style="text-align: center"> Update user</h1>
+  <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="updateForm" #formDirective="ngForm" (ngSubmit)="onSubmit(formDirective)">
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="username">
+      <mat-error *ngIf="updateForm.controls['username'].invalid">Username must have min. length 6.</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Role</mat-label>
+      <mat-select formControlName="role">
+        <mat-option value="ADMINISTRATOR">ADMINISTRATOR</mat-option>
+        <mat-option value="CLIENT">CLIENT</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button type="submit" style="margin-top: 35px;">Update</button>
+  </form>
+</div>

@@ -1,0 +1,66 @@
+.admin-chat-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.admin-chat-messages {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align messages to the start (left) */
+  margin-bottom: 20px;
+}
+
+.admin-message {
+  display: flex;
+  justify-content: space-between; /* Space between content and indicators */
+  margin-bottom: 10px;
+  width: 100%; /* Ensure the width spans the container */
+}
+
+.admin-message-content {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.admin-indicators {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Align indicators to the right */
+}
+
+.admin-message-seen {
+  color: #999;
+  margin-bottom: 5px; /* Add margin between seen and typing */
+}
+
+.admin-typing {
+  color: #999;
+  font-style: italic;
+  margin-bottom: 5px; /* Add space below typing */
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+}
+
+.admin-send-button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.admin-send-button:hover {
+  background-color: #0056b3;
+}

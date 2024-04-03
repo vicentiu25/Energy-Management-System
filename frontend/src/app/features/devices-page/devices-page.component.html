@@ -1,0 +1,48 @@
+<h1 style="color:blue;text-align:center">Devices</h1>
+
+<div class="tab" >
+  <button mat-raised-button (click)="newDevice()" class="button">New Device</button>
+  <table class="mat-elevation-z8" style="background-color: white">
+    <thead>
+    <tr>
+      <th scope="col" style="width:5%; text-align: center">Device</th>
+      <th scope="col" style="width:10%; text-align: center">Description</th>
+      <th scope="col" style="width:10%; text-align: center">Address</th>
+      <th scope="col" style="width:10%; text-align: center">Max Consumption</th>
+      <th scope="col" style="width:10%; text-align: center">User</th>
+      <th scope="col" style="width:10%; text-align: center">Update</th>
+      <th scope="col" style="width:10%; text-align: center">Delete</th>
+    </tr>
+    </thead>
+    <tbody class="text-light">
+    <tr *ngFor="let element of dataSource$ | async">
+      <td style="width:5%; text-align: center"> {{element.idDevice}} </td>
+      <td style="width:10%; text-align: center"> {{element.description}} </td>
+      <td style="width:10%; text-align: center"> {{element.address}} </td>
+      <td style="width:10%; text-align: center"> {{element.maxConsumption}} </td>
+      <td style="width:10%; text-align: center"> {{element.userId}} </td>
+      <td style="width:10%; text-align: center">
+        <button mat-fab color="primary" (click)="editDevice(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+      <td style="width:10%; text-align: center">
+        <button mat-fab color="primary" (click)="deleteDevice(element.idDevice)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="datepicker-container">
+    <mat-form-field class="datepicker-field">
+      <input matInput [matDatepicker]="picker" placeholder="Select a date" [value]="today" (dateChange)="onDateChange($event)">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <app-chart [deviceData]="deviceData"></app-chart>
+</div>
+<button mat-raised-button (click)="logout()" class="logout-button">Logout</button>
